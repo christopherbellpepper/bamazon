@@ -31,6 +31,22 @@ VALUES ("disc golf starter set", "Sporting Goods", 35.99, 3);
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("febreeze: 128oz. bucket", "Household", 10.49, 28);
 
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("febreeze: 5 gal. bucket", "Household", 45.49, 12);
+
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("CDR rewritable discs: 10pk.", "Electronics", 6.49, 82);
+
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Ladder Golf Backyard Set", "Sporting Goods", 38.99, 9);
+
+-- ### Alternative way to insert more than one row
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES 
+("Flip Cup/Beer Pong Party Set", "Parties & Entertainment", 17.00, 15),
+("Thigh Master", "Sporting Goods", 82.98, 90),
+("Massage Wand", "Electronics", 24.90, 15),
+("Bowl for your guests car Keys", "Parties & Entertainment", 25.00, 2);
 
 -- Updates the row where the column name is peter --
 -- UPDATE products
