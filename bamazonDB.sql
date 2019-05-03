@@ -14,9 +14,9 @@ CREATE TABLE products (
   -- Makes a boolean column called "department_name" which cannot contain null --
   department_name VARCHAR(100) NOT NULL,
   -- Makes a sting column called "price" --
-  price DECIMAL(10,2),
+  price DECIMAL(10,2) NOT NULL,
   -- Makes an numeric column called "stock_quantity" --
-  stock_quantity INTEGER(100),
+  stock_quantity INTEGER(100) NOT NULL,
   -- Sets item_id as this table's primary key which means all data contained within it will be unique --
   PRIMARY KEY (item_id)
 );
