@@ -23,15 +23,47 @@ connection.connect(function(err) {
   listInventory();
 });
 
-// function which prompts the user for what action they should take
+
 function listInventory() {
-    inquirer
-      .prompt({
-        name: "postOrBid",
-        type: "list",
-        message: "Would you like to [POST] an auction or [BID] on an auction?",
-        choices: ["POST", "BID", "EXIT"]
-      })
+  connection.query('SELECT * FROM products', function (err, res) {
+      if (err) throw err;
+
+      // Table display 
+      var table = new Table(
+          {
+              head: [
+                "Product ID", 
+                "Product Name", 
+                "Price", 
+                "Quantity"],
+              colWidths: [12, 75, 12, 12],
+          });
+
+      // Loop through inventory
+      for (var i = 0; i < res.length; i++) {
+          table.push(
+              [
+              res[i].id, 
+              res[i].product_name, 
+              res[i].department_name, 
+              parseFloat(res[i].price).toFixed(2), 
+              res[i].stock_quantity
+            ]
+          );
+      }
+
+      console.log(table.toString());
+    }
+  )};
+
+
+    // inquirer
+    //   .prompt({
+    //     name: "postOrBid",
+    //     type: "list",
+    //     message: "Would you like to [POST] an auction or [BID] on an auction?",
+    //     choices: ["POST", "BID", "EXIT"]
+    //   })
     //   .then(function(answer) {
     //     // based on their answer, either call the bid or the post functions
     //     if (answer.postOrBid === "POST") {
@@ -43,4 +75,4 @@ function listInventory() {
     //       connection.end();
     //     }
     //   });
-  }
+  

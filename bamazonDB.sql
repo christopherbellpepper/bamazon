@@ -35,6 +35,4 @@ VALUES
 ("Massage Wand", "Electronics", 24.90, 15),
 ("Bowl for your guests car Keys", "Parties & Entertainment", 25.00, 2);
 
-
-
 SELECT * FROM products;
