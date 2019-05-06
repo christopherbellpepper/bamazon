@@ -30,9 +30,9 @@ VALUES
 ("febreeze: 5 gal. bucket", "Household", 45.49, 12),
 ("CDR rewritable discs: 10pk.", "Electronics", 6.49, 82),
 ("Ladder Golf Backyard Set", "Sporting Goods", 38.99, 9),
-("Flip Cup/Beer Pong Party Set", "Parties & Entertainment", 17.00, 15),
+("Flip Cup/Beer Pong Party Set", "Parties & Entertainment", 17.99, 15),
 ("Thigh Master", "Sporting Goods", 82.98, 90),
-("Massage Wand", "Electronics", 24.90, 15),
-("Bowl for your guests car Keys", "Parties & Entertainment", 25.00, 2);
+("Massage Wand", "Electronics", 24.95, 15),
+("Bowl for your guests car Keys", "Parties & Entertainment", 25.49, 2);
 
 SELECT * FROM products;
