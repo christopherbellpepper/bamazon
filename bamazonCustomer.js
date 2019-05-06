@@ -23,9 +23,9 @@ connection.connect(function(err) {
   listInventory();
 });
 
-
 function listInventory() {
-  connection.query('SELECT * FROM products', function (err, res) {
+  connection.query('SELECT * FROM products', 
+  function (err, res) {
       if (err) throw err;
 
 // Loop through and display inventory
@@ -33,31 +33,39 @@ function listInventory() {
     console.log(
       res[i].item_id + ").  " + 
       res[i].product_name + "  {$" + 
-      res[i].price + "}  qty remaining: " + 
-      res[i].stock_quantity + "\n"
+      res[i].price + "} " + "\n"
           );
       }
+      inquirerFunction();
+  }
+)};
 
+function inquirerFunction() {
+  connection.query('SELECT * FROM products', 
+  function (err, res) {
+      if (err) throw err;
+
+inquirer
+.prompt([
+  {
+  type: "input",
+  name: "id",
+  message: "Please enter the Product ID of the item that you would like."
+},
+{
+  type: "input",
+  name: "quantity",
+  message: "How many would you like to buy?"
+}
+]).then(function(data) {
+  var itemID;
+  for (var i = 0; i < res.length; i++) {
+    if (res[i].id === parseInt(data.itemID)) {
+      itemID = res[i];
+      console.log(itemID);
     }
-  )};
-
-
-    // inquirer
-    //   .prompt({
-    //     name: "postOrBid",
-    //     type: "list",
-    //     message: "Would you like to [POST] an auction or [BID] on an auction?",
-    //     choices: ["POST", "BID", "EXIT"]
-    //   })
-    //   .then(function(answer) {
-    //     // based on their answer, either call the bid or the post functions
-    //     if (answer.postOrBid === "POST") {
-    //       postAuction();
-    //     }
-    //     else if(answer.postOrBid === "BID") {
-    //       bidAuction();
-    //     } else{
-    //       connection.end();
-    //     }
-    //   });
-  
+  }
+}
+)
+});
+}
