@@ -49,7 +49,7 @@ inquirer
 .prompt([
   {
   type: "input",
-  name: "id",
+  name: "itemID",
   message: "Please enter the Product ID of the item that you would like."
 },
 {
