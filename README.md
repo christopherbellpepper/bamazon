@@ -8,5 +8,6 @@ Once an order is placed, the inventory is updated in the MySQL database...
 proof of app life...
 
 ./inventory.png
-./id_quantity.png
+./order_complete.png
+./mysql_update.png
 

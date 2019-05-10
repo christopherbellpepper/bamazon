@@ -41,9 +41,6 @@ function listInventory() {
 )};
 
 function inquirerFunction() {
-  connection.query('SELECT * FROM products', 
-  function (err, res) {
-      if (err) throw err;
 
 inquirer
 .prompt([
@@ -57,15 +54,38 @@ inquirer
   name: "quantity",
   message: "How many would you like to buy?"
 }
+// 
 ]).then(function(data) {
-  var itemID;
-  for (var i = 0; i < res.length; i++) {
-    if (res[i].id === parseInt(data.itemID)) {
-      itemID = res[i];
-      console.log(itemID);
+  var itemID = (data.itemID);
+  var quantityInput = parseInt(data.quantity);
+  
+  
+
+  connection.query(`SELECT stock_quantity, price FROM products WHERE item_id = ${itemID}`, 
+  function (err, res) {
+      if (err) throw err;
+    console.log(res)
+    
+    if (res[0].stock_quantity < quantityInput) {
+      console.log("We're sorry. We do not have enough of this in stock...");
+    } else {
+      console.log("Your order total is {$" + (res[0].price * quantityInput) + "}");
+      console.log("Placing Order...");
+      console.log("Updating Quantities...");
+      console.log("Thank you for your business!");
+      var quantityUpdate = res[0].stock_quantity - quantityInput;
+      var query = connection.query(
+        "UPDATE products SET ? WHERE ?",
+        [
+            {
+                stock_quantity: quantityUpdate
+            },
+            {
+                item_id: itemID
+            }
+        ])
     }
-  }
-}
-)
+  });
+
 });
 }
