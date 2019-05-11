@@ -85,6 +85,7 @@ inquirer
             }
         ])
     }
+    connection.end();
   });
 
 });
